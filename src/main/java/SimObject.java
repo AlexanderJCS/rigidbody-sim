@@ -24,7 +24,7 @@ public class SimObject {
         this.mass = mass;
         this.colorShader = new ColorShader(ColorFactory.fromNormalized(RANDOM.nextFloat(), RANDOM.nextFloat(), RANDOM.nextFloat(), 1));
         this.collideSound = new Sound("src/main/resources/hit.ogg");
-        this.collideSound.setVolume(0.2f);
+        this.collideSound.setVolume(0.05f);
     }
 
     public void draw() {
