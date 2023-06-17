@@ -42,8 +42,8 @@ public class SimObject {
         }
 
         this.circle.shift(
-                PixelCoords.distXtoNDC(this.vel.x * deltaTime / Consts.RESOLUTION),
-                PixelCoords.distYtoNDC(this.vel.y * deltaTime / Consts.RESOLUTION)
+                PixelCoords.distXtoNDC(this.vel.x * deltaTime / Consts.RESOLUTION * Consts.SPEED_MULTIPLIER),
+                PixelCoords.distYtoNDC(this.vel.y * deltaTime / Consts.RESOLUTION * Consts.SPEED_MULTIPLIER)
         );
     }
 
