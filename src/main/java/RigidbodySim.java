@@ -1,14 +1,11 @@
 import jangl.JANGL;
 import jangl.io.Window;
-import jangl.time.Clock;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class RigidbodySim implements AutoCloseable {
     private final List<SimObject> simObjects;
-    private double timeElapsed;
-    private boolean setCooldownTo0;
 
     public RigidbodySim() {
         this.simObjects = new ArrayList<>();
@@ -18,9 +15,6 @@ public class RigidbodySim implements AutoCloseable {
                     SimObjectSpawner.getNewSimObject(this.simObjects)
             );
         }
-
-        this.timeElapsed = 0;
-        this.setCooldownTo0 = false;
     }
 
     private void draw() {
@@ -32,19 +26,11 @@ public class RigidbodySim implements AutoCloseable {
     }
 
     private void update() {
-        if (!this.setCooldownTo0) {
-            this.timeElapsed = Clock.getTimeDelta() / Consts.RESOLUTION;
-        }
-
         CollisionHandler.handleOutOfBounds(this.simObjects);
         CollisionHandler.handleCollisions(this.simObjects);
 
         for (SimObject object : this.simObjects) {
             object.update();
-
-            if (this.timeElapsed > 5 && !this.setCooldownTo0) {
-                this.setCooldownTo0 = true;
-            }
         }
     }
 
