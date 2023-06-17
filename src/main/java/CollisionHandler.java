@@ -12,7 +12,7 @@ public class CollisionHandler {
      * @param object1 The first object in the collision.
      * @param object2 The second object in the collision.
      */
-    private static void oneDimensionalCollision(SimObject object1, SimObject object2) {
+    private static void elasticCollision1D(SimObject object1, SimObject object2) {
         // Perform a perfectly elastic collision between the two objects
         // For all the formulas: https://courses.lumenlearning.com/boundless-physics/chapter/collisions/
 
@@ -56,7 +56,7 @@ public class CollisionHandler {
     private static void handleCollision(SimObject object1, SimObject object2) {
         /*
          * This method simplifies the two-dimensional collision into a one-dimensional collision. Unlike most physics
-         * billiard ball equations, we don't know the resulting angle, theta, after the collision, so a different
+         * billiard ball equations, we don't know the resulting angle after the collision, so a different
          * method is used.
          *
          * Follow these steps:
@@ -77,7 +77,7 @@ public class CollisionHandler {
         rotateAxis(object1, theta);
         rotateAxis(object2, theta);
 
-        oneDimensionalCollision(object1, object2);
+        elasticCollision1D(object1, object2);
 
         rotateAxis(object1, -theta);
         rotateAxis(object2, -theta);
